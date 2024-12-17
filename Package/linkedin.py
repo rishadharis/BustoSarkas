@@ -24,11 +24,11 @@ def scrape_linkedin_profile(linkedin_profile_url: str = None, mock: bool = False
         api_url = 'https://nubela.co/proxycurl/api/v2/linkedin'
         params = {
             'linkedin_profile_url': linkedin_profile_url,
-            'extra': 'include',
-            'github_profile_id': 'include',
-            'personal_contact_number': 'include',
-            'personal_email': 'include',
-            'inferred_salary': 'include',
+            'extra': 'exclude',
+            'github_profile_id': 'exclude',
+            'personal_contact_number': 'exclude',
+            'personal_email': 'exclude',
+            'inferred_salary': 'exclude',
             'skills': 'include',
             'use_cache': 'if-recent',
             'fallback_to_cache': 'on-error',

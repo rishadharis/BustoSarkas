@@ -8,7 +8,16 @@ def main():
         page_title="BustoSarkas",
     )
     # Set page title
-    st.title(f"Busto Sarkas (LinkedIn)")
+    st.title(f"Busto Sarkas (LinkedIn) LLM App")
+    st.markdown("""
+                <code>
+                Mohon untuk memberikan nama dengan tambahan informasi untuk memperkuat akurasi pencarian akun (contoh: Robert Downey Microsoft)
+                </code>
+                <code>
+                Jika akun tidak ditemukan atau akun yang ditampilkan salah, silahkan masukan url profile linkedin secara langsung
+                >> Created By: Rishad Harisdias Bustomi <<
+                </code>
+                """, unsafe_allow_html=True)
     
     # Create search input with specific styling
     search_query = st.text_input("Cari Nama Mu", "")
@@ -28,7 +37,15 @@ def main():
     if search_button:
         with result_placeholder:
             with st.spinner('Sedang mencari...'):
-                data = get_data(search_query)
+                try:
+                    data = get_data(search_query)
+                except Exception as e:
+                    data = {
+                        "full_name": "Data Tidak Ditemukan",
+                        "occupation": "---",
+                        "profile_picture": "https://via.placeholder.com/150",
+                        "sarkas": "Data linkedin tidak ditemukan. Consider menggunakan URL profile linkedin secara langsung."
+                    }
                 st.session_state.search_result = {
                     "image_url": data["profile_picture"],
                     "name": data["full_name"],
@@ -97,6 +114,9 @@ def main():
         }
         .stButton p {
             color:white;        
+        }
+        code {
+        white-space : pre-wrap !important;
         }
         
         /* Hide Streamlit elements */
