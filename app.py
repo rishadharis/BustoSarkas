@@ -2,6 +2,7 @@ import streamlit as st
 import time
 from sarkas import get_data
 
+### Main function to run the app ######
 def main():
     # Set page title
     st.title(f"Busto Sarkas (LinkedIn)")
