@@ -17,8 +17,8 @@ llm = ChatOpenAI(
 
 def get_linkedin_information(name: str) -> str:
     linkedin_url = lookup(name)
-    # linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)
-    linkedin_data = scrape_linkedin_profile(mock=True)
+    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)
+    # linkedin_data = scrape_linkedin_profile(mock=True)
     return linkedin_data
 
 def get_data(name: str) -> dict:
