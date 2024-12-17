@@ -4,6 +4,9 @@ from sarkas import get_data
 
 ### Main function to run the app ######
 def main():
+    st.set_page_config(
+        page_title="BustoSarkas",
+    )
     # Set page title
     st.title(f"Busto Sarkas (LinkedIn)")
     
