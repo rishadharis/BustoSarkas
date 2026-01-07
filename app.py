@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 from sarkas import get_data
+from utils import get_config
 
 ### Main function to run the app ######
 def main():
@@ -8,16 +9,16 @@ def main():
         page_title="BustoSarkas",
     )
     # Set page title
-    st.title(f"Busto Sarkas (LinkedIn) LLM App")
+    st.title(get_config("APP_TITLE", "Busto Sarkas (LinkedIn) LLM App"))
     st.markdown("""
                 <code>
                 Mohon untuk memberikan nama dengan tambahan informasi untuk memperkuat akurasi pencarian akun (contoh: Robert Downey Microsoft)
                 </code>
                 <code>
                 Jika akun tidak ditemukan atau akun yang ditampilkan salah, silahkan masukan url profile linkedin secara langsung
-                >> Created By: Rishad Harisdias Bustomi <<
+                >> Created By: {} <<
                 </code>
-                """, unsafe_allow_html=True)
+                """.format(get_config("APP_CREATOR", "Rishad Harisdias Bustomi")), unsafe_allow_html=True)
     
     # Create search input with specific styling
     search_query = st.text_input("Cari Nama Mu", "")

@@ -10,20 +10,14 @@ from langchain.agents import (
 from langchain import hub
 from pathlib import Path
 from Tools.tools import get_url_profile_tavily
-from streamlit import secrets
+from utils import get_config
 import re
 from urllib.parse import urlparse
 
-
-current_dir = Path(__file__).resolve().parent
-dotenv_path = current_dir.parent / '.env'
-
-# load_dotenv(dotenv_path)
-
-api_key = secrets["OPENAI_API_KEY"]
+api_key = get_config("OPENAI_API_KEY")
 llm = ChatOpenAI(
     api_key=api_key,
-    model='gpt-4o-mini'
+    model=get_config("OPENAI_MODEL_NAME", "gpt-4o-mini")
 )
 
 def lookup(name: str):

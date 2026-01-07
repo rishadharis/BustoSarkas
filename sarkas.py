@@ -4,15 +4,15 @@ from langchain.prompts import PromptTemplate
 # from dotenv import load_dotenv
 from Agents.linkedin_lookup_agent import lookup
 # import os
-from streamlit import secrets
+from utils import get_config
 
 # load_dotenv()
 
 # api_key = os.getenv("OPENAI_API_KEY")
-api_key = secrets["OPENAI_API_KEY"]
+api_key = get_config("OPENAI_API_KEY")
 llm = ChatOpenAI(
     api_key=api_key,
-    model='gpt-4o-mini'
+    model=get_config("OPENAI_MODEL_NAME", "gpt-4o-mini")
 )
 
 def get_linkedin_information(name: str) -> str:
@@ -24,9 +24,12 @@ def get_linkedin_information(name: str) -> str:
 def get_data(name: str) -> dict:
     information = get_linkedin_information(name)
     print(information)
-    summary_template = """
+    summary_template = get_config(
+        "SARKAS_PROMPT",
+        ""\"
       Berdasarkan informasi linkedin ini ```{information}``` tentang seseorang, Saya ingin anda membuat 1 paragraf (bukan poin-poin) sarkas (roasting) dengan bahasa jakarta selatan terhadap informasi orang tersebut secara lengkap, jangan hubungkan dengan jumlah followers, fokus ke kerjaan, pendidikan, skills, bio, dll dan setelahnya tetap diberi yang baik-baiknya seperti "Walaupun begitu.."
-    """
+    ""\"
+    )
     prompt_template = PromptTemplate(
         template=summary_template,
         input_variables=["information"]
