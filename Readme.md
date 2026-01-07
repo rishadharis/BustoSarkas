@@ -1,40 +1,111 @@
-# Sarkasin LinkedIn
-## Sebuah LLM Application untuk mencari akun linkedin mu dan meroasting nya
+# 🎭 BustoSarkas (LinkedIn Roaster)
 
-### Flow:
-Input Nama -> Agents (Mencari url linkedin) -> Tavily (LLM Search Engine API) -> Nubela (Linkedin Scraper) -> Langchain Chain with GPT
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
 
-## Configuration
+**BustoSarkas** is a satirical LLM-powered application that searches for a LinkedIn profile and serves up a "South Jakarta style" roast based on the user's professional background. 
 
-This project uses environment variables for configuration. You can set them in a `.env` file (for local development) or use Streamlit secrets.
+It uses AI agents to find the correct profile URL, scrapes the public data, and generates a humorous, sarcastic summary that pokes fun at typical corporate clichés while still acknowledging actual achievements.
 
-### Local Setup
-1. Clone the repository.
-2. Install dependencies:
+---
+
+## ✨ Features
+
+- **🔍 Intelligent Profile Search**: Uses Tavily and LangChain agents to find LinkedIn profiles from just a name.
+- **🌶️ "Jaksel" Style Roasting**: Generates unique, culturally nuanced sarcastic commentary (Bahasa Indonesia - South Jakarta slang).
+- **📝 Detailed Analysis**: Extracts occupation, education, and skills to fuel the roast.
+- **🎨 Modern UI**: Clean and responsive data display built with Streamlit.
+- **⚙️ Fully Configurable**: Customizable prompts, model selection, and app details.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Streamlit](https://streamlit.io/)
+- **Orchestration**: [LangChain](https://www.langchain.com/)
+- **LLM**: OpenAI (GPT-4o-mini / GPT-3.5)
+- **Search Tool**: [Tavily API](https://tavily.com/)
+- **Scraper**: [Nubela](https://nubela.co/) (Proxycurl) or Custom Scraper
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.10 or higher
+- API Keys for OpenAI and Tavily
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/rishadharis/BustoSarkas.git
+   cd BustoSarkas
+   ```
+
+2. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
-3. Copy `.env.example` to `.env`:
+
+3. **Configuration**
+   Copy the example environment file:
    ```bash
    cp .env.example .env
    ```
-4. Fill in the required API keys in `.env`.
-5. Run the app:
+
+4. **Set up Environment Variables**
+   Open `.env` and fill in your API keys:
+   ```env
+   OPENAI_API_KEY=sk-...
+   TAVILY_API_KEY=tvly-...
+   ```
+   *(See [Configuration](#-configuration) for all options)*
+
+5. **Run the App**
    ```bash
    streamlit run app.py
    ```
 
-### Configuration Options
-You can configure the following environment variables:
+## ⚙️ Configuration
 
-**Required:**
-- `OPENAI_API_KEY`: OpenAI API Key
-- `TAVILY_API_KEY`: Tavily API Key
-- `NUBELA_API_KEY`: Nubela API Key (if used)
-- `ANTHROPIC_API_KEY`: Anthropic API Key (if used)
+The application is designed to be flexible. You can configure it using a `.env` file or Streamlit secrets.
 
-**Optional:**
-- `OPENAI_MODEL_NAME`: OpenAI Model to use (default: `gpt-4o-mini`)
-- `APP_TITLE`: Application title shown in the browser
-- `APP_CREATOR`: Name of the creator displayed in the app
-- `SARKAS_PROMPT`: Custom prompt for the sarkas/roasting generation.
+### Required Keys
+| Variable | Description |
+|----------|-------------|
+| `OPENAI_API_KEY` | Your OpenAI API key for generating the roast. |
+| `TAVILY_API_KEY` | Used by the agent to search for LinkedIn profiles. |
+| `NUBELA_API_KEY` | (Optional) If using Nubela/Proxycurl for scraping. |
+
+### Optional Customization
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OPENAI_MODEL_NAME` | `gpt-4o-mini` | The OpenAI model to use. |
+| `APP_TITLE` | *Busto Sarkas...* | The title displayed in the browser tab and header. |
+| `APP_CREATOR` | *Rishad...* | The name displayed in the footer. |
+| `SARKAS_PROMPT` | *Default Prompt* | Custom instruction for the roasting style. |
+
+## 📂 Project Structure
+
+```
+BustoSarkas/
+├── Agents/                 # LangChain Agents
+│   └── linkedin_lookup_agent.py
+├── Package/                # Scrapers and utilities
+│   └── linkedin.py
+├── Tools/                  # Custom Tools
+│   └── tools.py
+├── app.py                  # Main Streamlit Application
+├── sarkas.py               # Core Logic & Chain
+├── utils.py                # Configuration Helper
+├── .env.example            # Environment template
+└── requirements.txt        # Python dependencies
+```
+
+## ⚠️ Disclaimer
+
+This tool is for **entertainment purposes only**. The roasts are generated by AI and are intended to be humorous, not offensive. Please use responsibly.
+
+---
+
+Created with ☕ and 🌶️ by **[Rishad Harisdias Bustomi](https://github.com/rishadharis)**

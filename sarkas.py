@@ -26,9 +26,9 @@ def get_data(name: str) -> dict:
     print(information)
     summary_template = get_config(
         "SARKAS_PROMPT",
-        ""\"
+        """
       Berdasarkan informasi linkedin ini ```{information}``` tentang seseorang, Saya ingin anda membuat 1 paragraf (bukan poin-poin) sarkas (roasting) dengan bahasa jakarta selatan terhadap informasi orang tersebut secara lengkap, jangan hubungkan dengan jumlah followers, fokus ke kerjaan, pendidikan, skills, bio, dll dan setelahnya tetap diberi yang baik-baiknya seperti "Walaupun begitu.."
-    ""\"
+    """
     )
     prompt_template = PromptTemplate(
         template=summary_template,
